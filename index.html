@@ -1,585 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url" content="https://...images/home-bg.png" />
-    <meta property="og:title" content="P&Q Fashion" />
-    <meta property="og:description" content="Style Redefined: Discover Your Perfect Look!" />
-    <meta property="og:image" content="https://...images/home-bg.png" />
-    <title>
-        P&Q Fashion
-    </title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/icon.png" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3QJWZ0TK5X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-      gtag('config', 'G-3QJWZ0TK5X');
-    </script>
-</head>
+        <!--=============== REMIXICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-<body>
-    <!-- MOBILE NAV -->
-    <div class="mb-nav">
-        <div class="mb-move-item"></div>
-        <div class="mb-nav-item active">
-            <a href="#home">
-                <i class="bx bxs-home"></i>
-            </a>
-        </div>
-        <div class="mb-nav-item">
-            <a href="#about">
-                <i class='bx bxs-wink-smile'></i>
-            </a>
-        </div>
-        <div class="mb-nav-item">
-            <a href="#store-menu-section">
-                <i class='bx bxs-store'></i>
-            </a>
-        </div>
-        <div class="mb-nav-item">
-            <a href="#testimonial">
-                <i class='bx bxs-comment-detail'></i>
-            </a>
-        </div>
-    </div>
-    <!-- END MOBILE NAV -->
-    <!-- BACK TO TOP BTN -->
-    <a href="#home" class="back-to-top">
-        <i class="bx bxs-to-top"></i>
-    </a>
-    <!-- END BACK TO TOP BTN -->
-    <!-- TOP NAVIGATION -->
-    <div class="nav">
-        <div class="menu-wrap">
-            <a href="#home">
-                <div class="logo">
+        <!--=============== SWIPER CSS ===============-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <title>P&Q Fashion</title>
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
                     P&Q Fashion
+                </a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">
+                                <i class="ri-home-line"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#new" class="nav__link">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>New</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#collection" class="nav__link">
+                                <i class="ri-compass-line"></i>
+                                <span>Collection</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="#products" class="nav__link">
+                                <i class="ri-t-shirt-line"></i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </a>
-            <div class="menu h-xs">
-                <a href="#home">
-                    <div class="menu-item active">
-                        Home
-                    </div>
-                </a>
-                <a href="#about">
-                    <div class="menu-item">
-                        About
-                    </div>
-                </a>
-                <a href="#store-menu-section">
-                    <div class="menu-item">
-                        Shop
-                    </div>
-                </a>
-                <a href="#testimonial">
-                    <div class="menu-item">
-                        Review
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- END TOP NAVIGATION -->
-    <!-- SECTION HOME -->
-    <section id="home" class="fullheight align-items-center bg-img bg-img-fixed"
-        style="background-image: url(images/home-bg.png);">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-xs-12">
-                    <div class="slogan">
-                        <h1 class="left-to-right play-on-scroll">
-                            P&Q Fashion
+
+                <!-- Theme change button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+            </nav>
+        </header>
+
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <!--==================== HOME ====================-->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
+                    <div class="home__data">
+                        <h1 class="home__title">
+                            New Clothing <br>
+                            Collection
                         </h1>
-                        <p class="left-to-right play-on-scroll delay-2" style="color: aliceblue;">
-                            Style Redefined: Discover Your Perfect Look!
+    
+                        <p class="home__description">
+                            Our curated collection offers stylish outfits<br> 
+                            to suit your every need!
                         </p>
-                        <div class="left-to-right play-on-scroll delay-2">
-                            <button onclick="window.open('https://www.facebook.com/profile.php?id=100068861238440')">
-                                Facebook
-                            </button>
-                            <button onclick="window.open('https://www.facebook.com/your-facebook-page')">
-                                Instagram
-                            </button>
-                        </div>
+
+                        <a href="#new" class="button__link">
+                            Explore <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+
+                    <div class="home__images">
+                        <img src="assets/img/home1.png" alt="home image">
+                        <img src="assets/img/home2.png" alt="home image">
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- END SECTION HOME -->
-    <!-- SECION ABOUT -->
-    <section class="about fullheight align-items-center" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-7 h-xs">
-                    <img src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2020%2F10%2Fkorean-fashion-brands-london-ujng-xu-store-emerging-designers-main.jpg?w=960&cbr=1&q=90&fit=max" alt=""
-                        class="fullwidth left-to-right play-on-scroll">
+            </section>
+
+            <!--==================== NEW ====================-->
+            <section class="new section" id="new">
+                <h2 class="section__title">
+                    New Categories
+                </h2>
+
+                <div class="new__container container grid">
+                    <article class="new__card">
+                        <img src="assets/img/new1.png" alt="new image" class="new__img">
+
+                        <a href="#" class="new__link">
+                            <div class="new__data">
+                                <h2 class="new__title">
+                                    Dresses & Skirts
+                                </h2>
+                                <span class="new__subtitle">
+                                    Discover Your Perfect Look
+                                </span>
+                            </div>
+
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="new__card">
+                        <img src="assets/img/new2.png" alt="new image" class="new__img">
+
+                        <a href="#" class="new__link">
+                            <div class="new__data">
+                                <h2 class="new__title">
+                                    Pants & Jackets
+                                </h2>
+                                <span class="new__subtitle">
+                                    Winter collection
+                                </span>
+                            </div>
+
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="new__card">
+                        <img src="assets/img/new3.png" alt="new image" class="new__img">
+
+                        <a href="#" class="new__link">
+                            <div class="new__data">
+                                <h2 class="new__title">
+                                    Casual Set
+                                </h2>
+                                <span class="new__subtitle">
+                                    Being Professional With Style
+                                </span>
+                            </div>
+
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </article>
                 </div>
-                <div class="col-5 col-xs-12 align-items-center">
-                    <div class="about-slogan right-to-left play-on-scroll">
-                        <h3>
-                            <span class="primary-color">We </span>unlock <span class="primary-color">your fashion</span>
-                            potential <span class="primary-color">!</span>
-                        </h3>
-                        <p>
-                            Discover our store, established in Vietnam 20 years ago and now expanding to Australia in 2022. Our curated collection offers stylish outfits to suit your every need. From casual to formal wear, our fashion experts ensure you'll find the perfect look. Experience exceptional service and elevate your style with us.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END SECION ABOUT -->
-    <!-- ITEM MENU SECTION -->
-    <section class="align-items-center bg-img bg-img-fixed" id="store-menu-section"
-        style="background-image: url(https://media.vogue.co.uk/photos/5db03a1caf2b790008de8d02/16:9/w_4000,h_2250,c_limit/9-Seoul-Day1-vogueint-15oct19-credit-Hong-Sung-oh.jpg);">
-        <div class="container">
-            <div class="store-menu">
-                <h1>
-                    What will <span class="primary-color">you wear</span> today?
-                </h1>
-                <p>
-                    Fashion can be a powerful form of self-expression and can certainly provide insights into a person's personality and preferences.
-                    A good fashion style should reflect your unique personality and allow you to express yourself authentically.
-                </p>
-                <div class="fashion-category">
-                    <div class="zoom play-on-scroll">
-                        <button class="active" data-item-type="all">
-                            All Style
-                        </button>
-                    </div>
-                    <div class="zoom play-on-scroll delay-2">
-                        <button data-item-type="t-shirt">
-                            T-Shirt
-                        </button>
-                    </div>
-                    <div class="zoom play-on-scroll delay-4">
-                        <button data-item-type="skirt">
-                            Skirt
-                        </button>
-                    </div>
-                    <div class="zoom play-on-scroll delay-6">
-                        <button data-item-type="dress">
-                            Dress
-                        </button>
-                    </div>
-                    <div class="zoom play-on-scroll delay-8">
-                        <button data-item-type="pajama">
-                            Pajama
-                        </button>
-                    </div>
-                    <div class="zoom play-on-scroll delay-10">
-                        <button data-item-type="outerwear">
-                            Outerwear
-                        </button>
-                    </div>
-                    <div class="zoom play-on-scroll delay-12">
-                        <button data-item-type="bottom">
-                            Bottom
-                        </button>
-                    </div>
-                </div>
+            </section>
 
-                <div class="store-item-wrap all">
-                    <div class="store-item dress-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/1.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Dress
-                                    </h3>
-                                    <span>
-                                        $40
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
+            <!--==================== COLLECTION ====================-->
+            <section class="collection section" id="collection">
+                <div class="collection__container container">
+                    <div class="collection__explore">
+                        <div class="collection__data-men">
+                            <h2 class="collection__title">
+                                T-Shirt <br>
+                                Collection
+                            </h2>
+                            <a href="#" class="button__link">
+                                Explore Clothes  <i class="ri-arrow-right-line"></i>
+                            </a>
                         </div>
+
+                        <img src="assets/img/collection1.png" alt="collection image">
                     </div>
 
-                    <div class="store-item dress-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/2.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Wedding Dress
-                                    </h3>
-                                    <span>
-                                        $120
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="collection__explore">
+                        <img src="assets/img/collection2.png" alt="collection image">
 
-                    <div class="store-item dress-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/7.JPG');">
-                                </div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Custom Outfit
-                                    </h3>
-                                    <span>
-                                        $60
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item dress-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/25.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Custom Outfit
-                                    </h3>
-                                    <span>
-                                        $40
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item outerwear-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/11.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Sweater 1
-                                    </h3>
-                                    <span>
-                                        $120
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item outerwear-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/12.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Sweater 2
-                                    </h3>
-                                    <span>
-                                        $120
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item outerwear-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/13.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Sweater 3
-                                    </h3>
-                                    <span>
-                                        $35
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item outerwear-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/14.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Sweater 4
-                                    </h3>
-                                    <span>
-                                        $35
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item pajama-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/15.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Pajama 1
-                                    </h3>
-                                    <span>
-                                        $30
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item pajama-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/16.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Pajama 2
-                                    </h3>
-                                    <span>
-                                        $30
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item pajama-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/17.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Pajama 3
-                                    </h3>
-                                    <span>
-                                        $30
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="store-item pajama-type">
-                        <div class="item-wrap bottom-up play-on-scroll">
-                            <div class="item-img">
-                                <div class="img-holder bg-img"
-                                    style="background-image: url('images/18.JPG');"></div>
-                            </div>
-                            <div class="item-info">
-                                <div>
-                                    <h3>
-                                        Pajama 4
-                                    </h3>
-                                    <span>
-                                        $30
-                                    </span>
-                                </div>
-                                <div class="cart-btn" onclick="openFacebookMessenger()">
-                                    <i class="bx bx-message"></i>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="collection__data-women">
+                            <h2 class="collection__title">
+                                Women <br>
+                                Collection
+                            </h2>
+                            <a href="#" class="button__link">
+                                Explore Clothes  <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>                 
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- END ITEM MENU SECTION -->
-    <!-- TESTIMONIAL SECTION -->
-    <section id="testimonial">
-        <div class="container">
-            <div class="row">
-                <div class="col-4 col-xs-12">
-                    <div class="review-wrap zoom play-on-scroll delay-2">
-                        <div class="review-content">
-                            <p>
-                                Outstanding quality, seamless buying experience, and reasonable prices make this store a gem. Add to that the friendly service, and you have the perfect shopping destination!
-                            </p>
-                            <div class="review-img bg-img"
-                                style="background-image: url(images/customer2.jpeg);">
-                            </div>
-                        </div>
-                        <div class="review-info">
-                            <h3>
-                                Jennifer
-                            </h3>
-                            <div class="rating">
-                                <i class="bx bxs-star"></i>
-                                <i class="bx bxs-star"></i>
-                                <i class="bx bxs-star"></i>
-                                <i class="bx bxs-star"></i>
-                                <i class="bx bxs-star"></i>
-                            </div>
-                        </div>
+            </section>
+
+            <!--==================== PRODUCTS ====================-->
+            <section class="products section" id="products">
+                <h2 class="section__title">
+                    Best Products
+                </h2>
+
+                <div class="products__container container swiper">
+                    <div class="swiper-wrapper">
+                        <article class="products__card swiper-slide">
+                            <img src="assets/img/product1.png" alt="product image" class="products__img">
+
+                            <h2 class="products__title">
+                                Hello Kitty Pajama Pant
+                            </h2>
+                            <span class="products__price">
+                                $12.99
+                            </span>
+                        </article>
+
+                        <article class="products__card swiper-slide">
+                            <img src="assets/img/product2.png" alt="product image" class="products__img">
+
+                            <h2 class="products__title">
+                                Winter Jacket
+                            </h2>
+                            <span class="products__price">
+                                $20.00
+                            </span>
+                        </article>
+
+                        <article class="products__card swiper-slide">
+                            <img src="assets/img/product3.png" alt="product image" class="products__img">
+
+                            <h2 class="products__title">
+                                T-Shirt
+                            </h2>
+                            <span class="products__price">
+                                $15.00
+                            </span>
+                        </article>
+
+                        <article class="products__card swiper-slide">
+                            <img src="assets/img/product4.png" alt="product image" class="products__img">
+
+                            <h2 class="products__title">
+                                Cardigan Jacket
+                            </h2>
+                            <span class="products__price">
+                                $80.00
+                            </span>
+                        </article>
+                    </div>
+
+                    <div class="swiper-button-next">
+                        <i class="ri-arrow-right-line"></i>
+                    </div>
+
+                    <div class="swiper-button-prev">
+                        <i class="ri-arrow-left-line"></i>
                     </div>
                 </div>
-                <div class="col-4 col-xs-12">
-                    <div class="zoom play-on-scroll">
-                        <div class="review-wrap active">
-                            <div class="review-content">
-                                <p>
-                                    This store offers top-notch quality clothing at prices that won't break the bank. The buying experience is seamless, with a user-friendly interface both online and in-store. Plus, the staff is always friendly and helpful, ensuring a pleasant shopping trip every time.
-                                </p>
-                                <div class="review-img bg-img"
-                                    style="background-image: url(images/customer1.jpeg);">
-                                </div>
-                            </div>
-                            <div class="review-info">
-                                <h3>
-                                    Vy Le
-                                </h3>
-                                <div class="rating">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </section>
+
+            <!--==================== BRANDS ====================-->
+            <section class="brand section">
+                <h2 class="section__title">
+                    Brands We Sell
+                </h2>
+
+                <div class="brand__container container grid">
+                    <img src="assets/img/logo1.png" alt="logo image" class="brand__img">
+                    <img src="assets/img/logo2.png" alt="logo image" class="brand__img">
+                    <img src="assets/img/logo3.png" alt="logo image" class="brand__img">
+                    <img src="assets/img/logo4.png" alt="logo image" class="brand__img">
                 </div>
-                <div class="col-4 col-xs-12">
-                    <div class="review-wrap zoom play-on-scroll delay-4">
-                        <div class="review-content">
-                            <p>
-                                I recently purchased a lovely Korean skirt and jacket ensemble from this store, and I couldn't be happier with my decision. 
-                                The staff went above and beyond to help me find the perfect outfit for my date night. 
-                                I received numerous compliments throughout the evening!
-                            </p>
-                            <div class="review-img bg-img"
-                                style="background-image: url(images/customer3.jpeg);">
-                            </div>
-                        </div>
-                        <div class="review-info">
-                            <h3>
-                                Yuri Zhang
-                            </h3>
-                            <div class="rating">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END TESTIMONIAL SECTION -->
-    <!-- FOOTER SECTION -->
-    <section class="footer bg-img" style="background-image: url(images/footer-bg.png);">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-xs-12">
-                    <h1>
-                        Store
-                    </h1>
-                    <br>
-                    <p>P&Q Botique Fashion, 240 Springvale Road, Springvale VIC 3171, Australia </p>
-                    <br>
-                    <p>Skyland 1, Kiosk 2, 46-58 Buckingham Avenue, Springvale VIC 3171, Australia </p>
-                    <br>
-                </div>
-                <div class="col-2 col-xs-12">
+            </section>
+        </main>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div>
+                    <a href="#" class="footer__logo">
+                        Our stores
+                    </a>
                     
+                    <p class="footer__description">
+                        P&Q Botique Fashion, 240 Springvale Road,<br>Springvale VIC 3171, Australia <br>
+                        Monday - Sunday <br>
+                        10AM - 6PM<br><br>
+                        Skyland 1, Kiosk 2, 46-58 Buckingham Avenue,<br>Springvale VIC 3171, Australia<br>
+                        Monday - Sunday <br>
+                        9AM - 5:30PM<br><br>
+                        ABN: 43 661 294 953
+                    </p>
                 </div>
-                <div class="col-4 col-xs-12">
-                    <h1>
-                        Contact
-                    </h1>
-                    <br>
-                    <p>Email: pnqfashion@gmail.com</p>
-                    <br>
-                    <p>ABN: 43 661 294 953</p>
-                    <br>
-                    <p>Copyright © 2024 P&Q Trading Pty Ltd</p>
+
+                <div class="footer__content">
+                    <div>
+                        <h3 class="footer__title">
+                            Company
+                        </h3>
+
+                        <ul class="footer__links">
+                            <li>
+                                <a href="#" class="footer__link">Shop</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Category</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer__link">Contact info</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="footer__title">
+                            Contact us
+                        </h3>
+
+                        <ul class="footer__social">
+                            <!-- Insert your name from your facebook page -->
+                            <a href="mailto:pnqfashion@gmail.com" target="_blank" class="footer__social-link">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+                            <!-- Insert your name from your instagram page -->
+                            <a href="mailto:pnqfashion@gmail.com" target="_blank" class="footer__social-link">
+                                <i class="ri-mail-line"></i>
+                            </a>
+                            <!-- Insert a real number plus country code -->
+                            <a href="https://api.whatsapp.com/send?phone=0422270479&text=Hello, we would like to know more about P&Q Fashion!" target="_blank" class="footer__social-link">
+                                <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- END FOOTER SECTION -->
 
-    <script src="index.js"></script>
-</body>
+            <div class="footer__info container">
+                <span class="footer__copy">
+                    Copyright © 2025 P&Q Trading Pty Ltd
+                </span>
+            </div>
+        </footer>
 
+        <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line"></i>
+        </a>
+        
+        <!--=============== SCROLLREVEAL ===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== SWIPER JS ===============-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>
