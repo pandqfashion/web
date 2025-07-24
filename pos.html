@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt Generator for A8 Paper</title>
+    <title>Receipt Generator for A8 Paper - v1</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -44,6 +44,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin: 5px;
         }
 
         button:hover {
@@ -54,66 +55,71 @@
             width: 52mm; /* A8 width */
             min-height: 74mm; /* A8 height */
             background-color: white;
-            color: black !important; /* Ensure solid black text for thermal printing */
+            color: #000000 !important; /* Solid black for thermal printing and PDF */
             padding: 3mm;
             font-size: 8pt;
             line-height: 1.2;
             margin: 20px auto;
-            display: none;
             text-align: center;
             box-sizing: border-box;
+            border: 1px solid #000000; /* Visible border for preview */
         }
 
         .receipt-header {
             font-size: 12pt;
             font-weight: bold;
-            color: black;
+            color: #000000;
             margin-bottom: 5pt;
         }
 
         .receipt-subheader {
             font-size: 10pt;
-            color: black;
+            color: #000000;
             margin: 5pt 0;
         }
 
         .receipt-details {
             font-size: 8pt;
-            color: black;
+            color: #000000;
             margin: 5pt 0;
             text-align: left;
         }
 
         .receipt-details p {
             margin: 2pt 0;
-            color: black;
+            color: #000000;
         }
 
         .receipt-footer {
             font-size: 8pt;
-            color: black;
+            color: #000000;
             margin-top: 10pt;
             font-weight: bold;
         }
 
         @media print {
-            body, .container, .form-container {
+            body {
+                background: none;
+            }
+
+            .container, .form-container {
                 display: none;
             }
 
             .receipt {
-                display: block !important;
+                display: block;
                 border: none;
                 margin: 0;
                 padding: 3mm;
                 width: 52mm;
-                min-height: 74mm;
-                color: black !important;
+                height: auto;
+                color: #000000 !important;
+                background-color: white;
                 page-break-after: always;
             }
 
             @page {
-                size: 52mm 74mm; /* A8 size */
+                size: 52mm auto; /* A8 width, auto height for thermal rolls */
                 margin: 0;
             }
         }
@@ -127,6 +133,7 @@
             <input type="number" id="amount" placeholder="Enter amount" step="0.01" min="0" required><br>
             <button onclick="generateReceipt()">Generate Receipt</button>
             <button onclick="printReceipt()" id="printButton" style="display: none;">Print Receipt</button>
+            <button onclick="saveAsPDF()" id="pdfButton" style="display: none;">Save as PDF (Debug)</button>
         </div>
         <div class="receipt" id="receipt">
             <div class="receipt-header">My Store</div>
@@ -161,9 +168,15 @@
             document.getElementById('receiptAmount').textContent = `Amount: $${parseFloat(amount).toFixed(2)}`;
             document.getElementById('receipt').style.display = 'block';
             document.getElementById('printButton').style.display = 'inline-block';
+            document.getElementById('pdfButton').style.display = 'inline-block';
         }
 
         function printReceipt() {
+            window.print();
+        }
+
+        function saveAsPDF() {
+            // Temporary function to debug PDF output by forcing print to PDF
             window.print();
         }
     </script>
