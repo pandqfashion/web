@@ -54,37 +54,44 @@
             width: 52mm; /* A8 width */
             min-height: 74mm; /* A8 height */
             background-color: white;
-            border: 1px solid black;
+            color: black !important; /* Ensure solid black text for thermal printing */
             padding: 3mm;
             font-size: 8pt;
+            line-height: 1.2;
             margin: 20px auto;
             display: none;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .receipt-header {
             font-size: 12pt;
             font-weight: bold;
+            color: black;
             margin-bottom: 5pt;
         }
 
         .receipt-subheader {
             font-size: 10pt;
+            color: black;
             margin: 5pt 0;
         }
 
         .receipt-details {
             font-size: 8pt;
+            color: black;
             margin: 5pt 0;
             text-align: left;
         }
 
         .receipt-details p {
             margin: 2pt 0;
+            color: black;
         }
 
         .receipt-footer {
             font-size: 8pt;
+            color: black;
             margin-top: 10pt;
             font-weight: bold;
         }
@@ -101,7 +108,13 @@
                 padding: 3mm;
                 width: 52mm;
                 min-height: 74mm;
+                color: black !important;
                 page-break-after: always;
+            }
+
+            @page {
+                size: 52mm 74mm; /* A8 size */
+                margin: 0;
             }
         }
     </style>
