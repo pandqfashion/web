@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt Generator for A8 Paper - v1</title>
+    <title>Receipt Generator for A8 Paper - v2</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -53,16 +53,16 @@
 
         .receipt {
             width: 52mm; /* A8 width */
-            min-height: 74mm; /* A8 height */
+            height: auto; /* Flexible height for thermal rolls */
             background-color: white;
-            color: #000000 !important; /* Solid black for thermal printing and PDF */
+            color: #000000; /* Solid black text */
             padding: 3mm;
             font-size: 8pt;
             line-height: 1.2;
             margin: 20px auto;
             text-align: center;
             box-sizing: border-box;
-            border: 1px solid #000000; /* Visible border for preview */
+            border: 1px solid #000000; /* Border for on-screen preview */
         }
 
         .receipt-header {
@@ -100,26 +100,28 @@
         @media print {
             body {
                 background: none;
+                margin: 0;
             }
 
             .container, .form-container {
-                display: none;
+                display: none !important;
             }
 
             .receipt {
-                display: block;
-                border: none;
-                margin: 0;
-                padding: 3mm;
+                display: block !important;
                 width: 52mm;
                 height: auto;
-                color: #000000 !important;
+                margin: 0;
+                padding: 3mm;
+                border: none;
+                color: #000000;
                 background-color: white;
                 page-break-after: always;
+                position: static;
             }
 
             @page {
-                size: 52mm auto; /* A8 width, auto height for thermal rolls */
+                size: 52mm auto; /* A8 width, auto height */
                 margin: 0;
             }
         }
@@ -133,9 +135,9 @@
             <input type="number" id="amount" placeholder="Enter amount" step="0.01" min="0" required><br>
             <button onclick="generateReceipt()">Generate Receipt</button>
             <button onclick="printReceipt()" id="printButton" style="display: none;">Print Receipt</button>
-            <button onclick="saveAsPDF()" id="pdfButton" style="display: none;">Save as PDF (Debug)</button>
+            <button onclick="saveAsPDF()" id="pdfButton" style="display: none;">Save as PDF</button>
         </div>
-        <div class="receipt" id="receipt">
+        <div class="receipt" id="receipt" style="display: none;">
             <div class="receipt-header">My Store</div>
             <div class="receipt-subheader">Customer Receipt</div>
             <div class="receipt-details">
@@ -172,12 +174,16 @@
         }
 
         function printReceipt() {
-            window.print();
+            setTimeout(() => {
+                window.print();
+            }, 100); // Delay to ensure DOM rendering
         }
 
         function saveAsPDF() {
-            // Temporary function to debug PDF output by forcing print to PDF
-            window.print();
+            // Force print dialog for PDF saving
+            setTimeout(() => {
+                window.print();
+            }, 100); // Delay to ensure DOM rendering
         }
     </script>
 </body>
