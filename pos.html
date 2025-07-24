@@ -1,194 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt Generator for A8 Paper -v3</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f4f4f4;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A8 Receipt Printer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      background: #f0f0f0;
+      text-align: center;
+    }
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
+    #generateBtn {
+      margin: 50px auto;
+      padding: 15px 30px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
 
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+    .receipt {
+      width: 52mm;
+      max-width: 100%;
+      background: white;
+      padding: 10px;
+      font-size: 10pt;
+      color: black;
+      margin: 0 auto;
+      text-align: center;
+      display: none;
+    }
 
-        input[type="number"] {
-            padding: 10px;
-            width: 200px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    .receipt p {
+      margin: 5px 0;
+    }
 
-        button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-        }
+    .receipt .title {
+      font-size: 14pt;
+      font-weight: bold;
+    }
 
-        button:hover {
-            background-color: #218838;
-        }
+    .receipt .thankyou {
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        .receipt {
-            width: 52mm;
-            height: auto;
-            background-color: white;
-            color: #000000;
-            padding: 3mm;
-            font-size: 8pt;
-            line-height: 1.2;
-            margin: 20px auto;
-            text-align: center;
-            box-sizing: border-box;
-            border: 1px solid #000000;
-            display: none;
-        }
+    @media print {
+      body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
 
-        .receipt-header {
-            font-size: 12pt;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 5pt;
-        }
+      #generateBtn {
+        display: none;
+      }
 
-        .receipt-subheader {
-            font-size: 10pt;
-            color: #000000;
-            margin: 5pt 0;
-        }
+      .receipt {
+        display: block;
+        width: 52mm;
+        padding: 5mm;
+        margin: 0;
+      }
 
-        .receipt-details {
-            font-size: 8pt;
-            color: #000000;
-            margin: 5pt 0;
-            text-align: left;
-        }
-
-        .receipt-details p {
-            margin: 2pt 0;
-            color: #000000;
-        }
-
-        .receipt-footer {
-            font-size: 8pt;
-            color: #000000;
-            margin-top: 10pt;
-            font-weight: bold;
-        }
-
-        @media print {
-            body {
-                background: none;
-                margin: 0;
-            }
-
-            .container, .form-container {
-                display: none !important;
-            }
-
-            .receipt {
-                display: block !important;
-                width: 52mm;
-                height: auto;
-                margin: 0;
-                padding: 3mm;
-                border: none;
-                color: #000000;
-                background-color: white;
-                page-break-after: always;
-                position: static;
-            }
-
-            @page {
-                size: 52mm auto;
-                margin: 0;
-            }
-        }
-    </style>
+      @page {
+        size: 52mm auto;
+        margin: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="form-container">
-            <h2>Generate Receipt</h2>
-            <label for="amount">Enter Payment Amount ($):</label><br>
-            <input type="number" id="amount" placeholder="Enter amount" step="0.01" min="0" required><br>
-            <button onclick="generateReceipt()">Generate Receipt</button>
-            <button onclick="printReceipt()" id="printButton" style="display: none;">Print Receipt</button>
-            <button onclick="saveAsPDF()" id="pdfButton" style="display: none;">Save as PDF</button>
-        </div>
-        <div class="receipt" id="receipt">
-            <div class="receipt-header">My Store</div>
-            <div class="receipt-subheader">Customer Receipt</div>
-            <div class="receipt-details">
-                <p id="receiptDate">Date: </p>
-                <p id="receiptAmount">Amount: </p>
-                <p>Payment Method: Cash/Card</p>
-            </div>
-            <div class="receipt-footer">Thank You for Your Purchase!</div>
-        </div>
-    </div>
 
-    <script>
-        function generateReceipt() {
-            const amount = document.getElementById('amount').value;
-            if (!amount || amount <= 0) {
-                alert('Please enter a valid amount.');
-                return;
-            }
+  <button id="generateBtn" onclick="promptAmount()">Generate Receipt</button>
 
-            const date = new Date().toLocaleString('en-US', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
+  <div class="receipt" id="receipt">
+    <p class="title">My Store</p>
+    <p>Customer Receipt</p>
+    <p id="dateLine"></p>
+    <p id="amountLine"></p>
+    <p>Payment: Cash/Card</p>
+    <p class="thankyou">Thank you for your purchase!</p>
+  </div>
 
-            document.getElementById('receiptDate').textContent = `Date: ${date}`;
-            document.getElementById('receiptAmount').textContent = `Amount: $${parseFloat(amount).toFixed(2)}`;
-            document.getElementById('receipt').style.display = 'block';
-            document.getElementById('printButton').style.display = 'inline-block';
-            document.getElementById('pdfButton').style.display = 'inline-block';
-        }
+  <script>
+    function promptAmount() {
+      const amount = prompt("Enter total amount customer will pay ($):");
+      if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+        alert("Please enter a valid number.");
+        return;
+      }
 
-        function printReceipt() {
-            const receipt = document.getElementById('receipt');
-            receipt.style.display = 'block';
-            setTimeout(() => {
-                window.print();
-            }, 300);
-        }
+      const now = new Date();
+      const dateStr = now.toLocaleString('en-AU', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
 
-        function saveAsPDF() {
-            const receipt = document.getElementById('receipt');
-            receipt.style.display = 'block';
-            setTimeout(() => {
-                window.print();
-            }, 300);
-        }
-    </script>
+      document.getElementById('dateLine').textContent = `Date: ${dateStr}`;
+      document.getElementById('amountLine').textContent = `Amount: $${parseFloat(amount).toFixed(2)}`;
+      document.getElementById('receipt').style.display = 'block';
+
+      setTimeout(() => {
+        window.print();
+      }, 300); // Allow time for rendering
+    }
+  </script>
+
 </body>
 </html>
