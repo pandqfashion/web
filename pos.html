@@ -79,16 +79,37 @@
   <button id="generateBtn" onclick="promptAmount()">Generate Receipt</button>
 
   <div class="receipt" id="receipt">
-    <p class="title">Sky Land</p>
+    <p class="title">My Store</p>
     <p>Customer Receipt</p>
     <p id="dateLine"></p>
     <p id="amountLine"></p>
-    <p>Payment: Cash</p>
+    <p>Payment: Cash/Card</p>
     <p class="thankyou">Thank you for your purchase!</p>
   </div>
 
-  <script>
-    function promptAmount() {
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // ✅ 1. Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDhsGZYKItxWbLQrPpYD_8IiuP6y2kWlzw",
+    authDomain: "skyland-b4320.firebaseapp.com",
+    projectId: "skyland-b4320",
+    storageBucket: "skyland-b4320.firebasestorage.app",
+    messagingSenderId: "576735119472",
+    appId: "1:576735119472:web:4c4818861f1117b95fccb5",
+    measurementId: "G-DM5VXW3XVC"
+  };
+
+    // ✅ 3. Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ✅ 4. Prompt for amount and save to Firestore
+    window.promptAmount = async function () {
       const amount = prompt("Enter total amount customer will pay ($):");
       if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
         alert("Please enter a valid number.");
@@ -96,22 +117,29 @@
       }
 
       const now = new Date();
-      const dateStr = now.toLocaleString('en-AU', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
+      const dateStr = now.toLocaleDateString('en-AU'); // e.g. 24/07/2025
+      const dateKey = dateStr.replace(/\//g, '-');      // Firestore collection: "24-07-2025"
+      const timeStr = now.toLocaleTimeString('en-AU');  // e.g. 14:35:22
 
-      document.getElementById('dateLine').textContent = `Date: ${dateStr}`;
+      // Show receipt
+      document.getElementById('dateLine').textContent = `Date: ${dateStr} ${timeStr}`;
       document.getElementById('amountLine').textContent = `Amount: $${parseFloat(amount).toFixed(2)}`;
       document.getElementById('receipt').style.display = 'block';
 
-      setTimeout(() => {
-        window.print();
-      }, 300); // Allow time for rendering
-    }
+      // Save to Firestore
+      try {
+        await addDoc(collection(db, dateKey), {
+          time: timeStr,
+          amount: parseFloat(amount)
+        });
+        console.log("✅ Saved to Firestore");
+      } catch (e) {
+        console.error("❌ Error adding document: ", e);
+      }
+
+      // Print
+      setTimeout(() => window.print(), 300);
+    };
   </script>
 
 </body>
