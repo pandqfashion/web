@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    input[type="date"] {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #salesList {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
+    .sale-item {
+      background: white;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    #totalSale {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📅 View Sales by Date</h2>
+  <input type="date" id="datePicker" />
+  <div id="totalSale">Total: $0.00</div>
+
+  <div id="salesList"></div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhsGZYKItxWbLQrPpYD_8IiuP6y2kWlzw",
+      authDomain: "skyland-b4320.firebaseapp.com",
+      projectId: "skyland-b4320",
+      storageBucket: "skyland-b4320.firebasestorage.app",
+      messagingSenderId: "576735119472",
+      appId: "1:576735119472:web:4c4818861f1117b95fccb5",
+      measurementId: "G-DM5VXW3XVC"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const dateInput = document.getElementById('datePicker');
+    const totalDisplay = document.getElementById('totalSale');
+    const salesList = document.getElementById('salesList');
+
+    dateInput.addEventListener('change', async () => {
+      const selectedDate = new Date(dateInput.value);
+      if (!selectedDate || isNaN(selectedDate)) return;
+
+      const dateKey = dateInput.value.split('-').reverse().join('-'); // 2025-07-24 -> 24-07-2025
+
+      try {
+        const snapshot = await getDocs(collection(db, dateKey));
+        const sales = [];
+
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          sales.push({ ...data });
+        });
+
+        // Sort by time
+        sales.sort((a, b) => a.time.localeCompare(b.time));
+
+        // Show total
+        const total = sales.reduce((sum, item) => sum + parseFloat(item.amount), 0);
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+
+        // Show list
+        salesList.innerHTML = '';
+        sales.forEach(sale => {
+          const div = document.createElement('div');
+          div.className = 'sale-item';
+          div.innerHTML = `<strong>Time:</strong> ${sale.time}<br><strong>Amount:</strong> $${parseFloat(sale.amount).toFixed(2)}`;
+          salesList.appendChild(div);
+        });
+
+      } catch (e) {
+        console.error("Error loading sales:", e);
+        totalDisplay.textContent = "Error loading data.";
+        salesList.innerHTML = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
